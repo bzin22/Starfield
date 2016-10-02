@@ -184,9 +184,10 @@ class OddballParticle2 //jupiter
 	{
 		posX = Math.cos(angle * speed) + posX +0.5;
 		posY = Math.sin(angle * speed) + posY +0.5;
-		if (radius >= 50)
+		if (posX >= 699 && posY <= 399)
 		{
-			
+			posX = 700;
+			posY = 300; 
 		}
 	}
 	void show()
@@ -240,16 +241,17 @@ class OddballParticle4 //mercury
 	{
 		posX = 500;
 		posY = 500;
-		speed = 16;
+		speed = 8;
 		angle = 3*Math.PI/4;
 	}
 	void move()
 	{
-		posX = Math.cos(angle * speed) + posX +0.5;
-		posY = Math.sin(angle * speed) + posY +0.5;
-		if (radius >= 50)
+		posX = Math.cos(angle * speed) + posX +.5;
+		posY = Math.sin(angle * speed) + posY +.5;
+		if (posX >= 560 && posY >= 510)
 		{
-			
+			posX = 570;
+			posY = 510; 
 		}
 	}
 	void show()
