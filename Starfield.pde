@@ -130,7 +130,7 @@ class NormalParticle implements Particle
 	}
 	public void show()
 	{
-		fill(102,51,0);
+		fill(96,96,96);
 		ellipse((float)posX, (float)posY, 10, 10);
 	}
 }
@@ -208,21 +208,22 @@ class OddballParticle3 //mars
 	{
 		posX = 500;
 		posY = 500;
-		speed = 7;
-		angle = 3*Math.PI/4;
+		speed = 21;
+		angle = 12*Math.PI/4;
 	}
 	void move()
 	{
 		posX = Math.cos(angle * speed) + posX +0.5;
 		posY = Math.sin(angle * speed) + posY +0.5;
-		if (radius >= 50)
+		if (posX <= 299 && posY >= 599)
 		{
-			
+			posX = 299;
+			posY = 699; 
 		}
 	}
 	void show()
 	{
-		fill(255,178,102);
+		fill(153,76,0);
 		ellipse((float)posX, (float)posY, 40, 40);
 	}
 }
@@ -270,13 +271,13 @@ class OddballParticle5 // venus
 	{
 		posX = 500;
 		posY = 500;
-		speed = 12;
-		angle = 3*Math.PI/4;
+		speed = 1;
+		angle = 4*Math.PI/4;
 	}
 	void move()
 	{
 		posX = Math.cos(angle * speed) + posX +0.5;
-		posY = Math.sin(angle * speed) + posY +0.5;
+		posY = Math.sin(angle * speed) + posY +01;
 		if (radius >= 50)
 		{
 			
@@ -431,7 +432,7 @@ class JumboParticle  // Sun
 	}
 	void show()
 	{
-		fill(255,128,0);
+		fill(255,255,51);
 		ellipse((float)posX, (float)posY, mySize, mySize);
 	}
 	void move()
