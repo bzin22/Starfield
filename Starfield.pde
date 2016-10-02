@@ -4,8 +4,8 @@
 Particle [] asteroids; 
 OddballParticle [] earth;
 JumboParticle [] sun;
-OddballParticle2 [] jupiter;
-OddballParticle3 [] mars;
+OddballParticle2 [] mars;
+OddballParticle3 [] jupiter;
 OddballParticle4 [] mercury;
 OddballParticle5 [] venus;
 OddballParticle6 [] saturn;
@@ -19,8 +19,8 @@ public void setup()
 	asteroids = new Particle[200];
 	earth = new OddballParticle[1];
 	sun = new JumboParticle[1];
-	jupiter = new OddballParticle2[1];
-	mars = new OddballParticle3[1];
+	mars = new OddballParticle2[1];
+	jupiter = new OddballParticle3[1];
 	mercury = new OddballParticle4[1];
 	venus = new OddballParticle5[1];
 	saturn = new OddballParticle6[1];
@@ -33,8 +33,8 @@ public void setup()
 	 }
 	 earth[0] = new OddballParticle();
 	 sun[0] = new JumboParticle();
-	 jupiter[0] = new OddballParticle2();
-	 mars[0] = new OddballParticle3();
+	 mars[0] = new OddballParticle2();
+	 jupiter[0] = new OddballParticle3();
 	 mercury[0] = new OddballParticle4();
 	 venus[0] = new OddballParticle5();
 	 saturn[0] = new OddballParticle6();
@@ -165,7 +165,7 @@ class OddballParticle //Earth
 		ellipse((float)posX, (float)posY, 50, 50);
 	}
 }
-class OddballParticle2 //jupiter
+class OddballParticle2 // mars
 {
 	double posX; // position X
 	double posY; // position Y
@@ -192,12 +192,12 @@ class OddballParticle2 //jupiter
 	}
 	void show()
 	{
-		fill(255,0,0);
-		ellipse((float)posX, (float)posY, 60, 60);
+		fill(153,76,0);
+		ellipse((float)posX, (float)posY, 40, 40);
 	}
 }
 
-class OddballParticle3 //mars
+class OddballParticle3 // jupiter
 {
 	double posX; // position X
 	double posY; // position Y
@@ -224,8 +224,8 @@ class OddballParticle3 //mars
 	}
 	void show()
 	{
-		fill(153,76,0);
-		ellipse((float)posX, (float)posY, 40, 40);
+		fill(255,0,0);
+		ellipse((float)posX, (float)posY, 60, 60);
 	}
 }
 
@@ -340,11 +340,12 @@ class OddballParticle7 // uranus
 	}
 	void move()
 	{
-		posX = Math.cos(angle * speed) + posX +0.5;
-		posY = Math.sin(angle * speed) + posY +0.5;
-		if (radius >= 50)
+		posX = Math.cos(angle * speed) + posX -0.5;
+		posY = Math.sin(angle * speed) + posY -0.5;
+		if (posX <= 199 && posY <= 199)
 		{
-			
+			posX = 199;
+			posY = 199; 
 		}
 	}
 	void show()
@@ -371,8 +372,8 @@ class OddballParticle8 // neptune
 	}
 	void move()
 	{
-		posX = Math.cos(angle * speed) + posX +0.5;
-		posY = Math.sin(angle * speed) + posY +0.5;
+		posX = Math.cos(angle * speed) + posX +.5;
+		posY = Math.sin(angle * speed) + posY +.5;
 		if (radius >= 50)
 		{
 			
@@ -404,9 +405,10 @@ class OddballParticle9 // pluto
 	{
 		posX = Math.cos(angle * speed) + posX +0.5;
 		posY = Math.sin(angle * speed) + posY +0.5;
-		if (radius >= 50)
+		if (posX >= 599 && posY >= 959)
 		{
-			
+			posX = 650;
+			posY = 959; 
 		}
 	}
 	void show()
