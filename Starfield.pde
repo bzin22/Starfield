@@ -169,38 +169,7 @@ interface Particle
 	public void show(); 
 	public void move();
 }
-class OddballParticle  //Earth
-{
-	double posX; // position X
-	double posY; // position Y
-	int c; // color
-	double speed; 
-	double angle; // radians 
-	double radius = Math.sqrt( ((posX-500)*(posX-500)) + ((posY-500)*(posY-500)) );
-	OddballParticle ()
-	{
-		posX = 500;
-		posY = 500;
-		speed = 6;
-		angle = Math.PI/4;
-	}
-	void move()
-	{
-		posX = Math.cos(angle * speed) + posX +.1;
-		posY = Math.sin(angle * speed) + posY +.1;
-		if (posX >= 517 || posY <= 370)
-		{
-			posX = 514;
-			posY = 370;
-			
-		}
-	}
-	void show()
-	{
-		fill(0,0,255);
-		ellipse((float)posX, (float)posY, 50, 50);
-	}
-}
+
 class OddballParticle2 // mars
 {
 	double posX; // position X
@@ -222,8 +191,18 @@ class OddballParticle2 // mars
 		posY = Math.sin(angle * speed) + posY +0.5;
 		if (posX >= 640 && posY <= 370)
 		{
-			posX = 640;
-			posY = 360; 
+			posX = 640-400;
+			posY = 360-400; 
+			if (posX == 640-400 && posY == 360-400)
+			{
+				translate(500, 500);
+				rotate(rot);
+				rot += 1;
+				fill(153,76,0);
+				ellipse((float)posX, (float)posY, 40, 40);
+				rotate(-rot);
+				translate(0,0);
+			}
 		}
 
 	}
@@ -427,6 +406,7 @@ class OddballParticle8 // neptune
 	{
 		fill(0,128,255);
 		ellipse((float)posX, (float)posY, 66, 66);
+		
 	}
 }
 
@@ -492,4 +472,53 @@ class JumboParticle  // Sun
 		}
 	}
 }
+class OddballParticle  //Earth
+{
+	double posX; // position X
+	double posY; // position Y
+	int c; // color
+	double speed; 
+	double angle; // radians 
+	double radius = Math.sqrt( ((posX-500)*(posX-500)) + ((posY-500)*(posY-500)) );
+	OddballParticle ()
+	{
+		posX = 500;
+		posY = 500;
+		speed = 6;
+		angle = Math.PI/4;
+	}
+	void move()
+	{
+		posX = Math.cos(angle * speed) + posX +.1;
+		posY = Math.sin(angle * speed) + posY +.1;
+		if (posX >= 517 || posY <= 370)
+		{
+			posX = 514-500;
+			posY = 370-500;
+			if (posX == 514-500 && posY == 370-500)
+			{
+				frameRate(3);
+				translate(500, 500);
+				rotate(rot);
+				rot += 1;
+				fill(0,0,255);
+				ellipse((float)posX, (float)posY, 50, 50); // Earth
+				fill(153,76,0);
+				ellipse((float)640-500, (float)360-500, 40, 40); // mars
+				fill(102,102,255);
+				ellipse((float)650-500, (float)959-500, 19, 19); // pluto
+				fill(0,128,255);
+				ellipse((float)430-500, (float)900-500, 66, 66); // neptune
+				
+				rotate(-rot);
+				translate(0,0);
 
+			}
+		}
+	}
+	void show()
+	{
+		fill(0,0,255);
+		ellipse((float)posX, (float)posY, 50, 50);
+	}
+}
