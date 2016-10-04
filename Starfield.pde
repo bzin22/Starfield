@@ -1,8 +1,11 @@
 // Bryan Zin -- Starfield Solar System
 // AP Computer Science - Block 3 - Mr.Simon
 
-Particle [] asteroids; 
 
+
+Particle [] asteroids; 
+int counter = 0;
+int rot = 0;
 OddballParticle [] earth;
 JumboParticle [] sun;
 OddballParticle2 [] mars;
@@ -13,12 +16,23 @@ OddballParticle6 [] saturn;
 OddballParticle7 [] uranus;
 OddballParticle8 [] neptune;
 OddballParticle9 [] pluto;
-Osky [] lots;
+
 
 public void setup()
 {
+	/*
+	if(counter < 1)
+	{
+		translate(500,500);
+		rotate(5);
+		System.out.println("good");
+		counter++;
+	}
+	*/
 	size(1000,1000);
-	lots = new Osky [300];
+	
+
+	
 	asteroids = new Particle[200];
 	earth = new OddballParticle[1];
 	sun = new JumboParticle[1];
@@ -34,10 +48,7 @@ public void setup()
 	 {
 	 	asteroids[nI] = new NormalParticle();
 	 }
-	 for (int a = 0; a < lots.length; a++) 
-	 {
-	 	lots[a] = new Osky();
-	 } 
+	 
 	 earth[0] = new OddballParticle();
 	 sun[0] = new JumboParticle();
 	 mars[0] = new OddballParticle2();
@@ -48,15 +59,22 @@ public void setup()
 	 uranus[0] = new OddballParticle7();
 	 neptune[0] = new OddballParticle8();
 	 pluto[0] = new OddballParticle9();
+
 }
 public void draw()
 {
 	background(0);
-	for (int h = 0; h < lots.length; h++) 
-	{
-		lots[h].show();
-		lots[h].move();
-	}
+	
+	for(int a = 0; a < 1000; a+=30)
+  	{
+	    for(int b = 0; b < 1000; b+=30)
+	    {
+	      fill(255,255,255);
+	      ellipse(a+5, b+5, 2,2);
+	    }
+  	}
+	
+	
 	for (int i = 0; i < asteroids.length; i++) 
 	{
 		asteroids[i].show();
@@ -113,30 +131,10 @@ public void draw()
 		pluto[s].show();
 		pluto[s].move();
 	}
+
 }
-class Osky
-{
-	int posX, posY;
-	double speed, angle;
-	Osky()
-	{
-		posX = 500;
-		posY = 500;
-		speed = 5.5;
-		angle = Math.PI * 2 * Math.random();
-	}
-	void show()
-	{
-		fill(255, 255, 255);
-		ellipse((float)posX, (float)posY, 2, 2);
-	}
-	void move()
-	{
-		posX = (int)(Math.cos(angle * speed) + posX);
-		posY = (int)(Math.sin(angle * speed) + posY);
-	}
-}
-class NormalParticle implements Particle 
+
+class NormalParticle implements Particle  // asteroid belt
 {
 	double posX; // position X
 	double posY; // position Y
@@ -154,9 +152,11 @@ class NormalParticle implements Particle
 	}
 	public void move()
 	{
-		posX = Math.cos(angle * speed) + posX;
-		posY = Math.sin(angle * speed) + posY;
-		
+		if (dist((float)posX, (float)posY, 500, 500) < 235)
+		{
+			posX = Math.cos(angle * speed) + posX;
+			posY = Math.sin(angle * speed) + posY;
+		}
 	}
 	public void show()
 	{
@@ -169,7 +169,7 @@ interface Particle
 	public void show(); 
 	public void move();
 }
-class OddballParticle //Earth
+class OddballParticle  //Earth
 {
 	double posX; // position X
 	double posY; // position Y
@@ -190,8 +190,9 @@ class OddballParticle //Earth
 		posY = Math.sin(angle * speed) + posY +.1;
 		if (posX >= 517 || posY <= 370)
 		{
-			posX = 517;
-			posY = 370; 
+			posX = 514;
+			posY = 370;
+			
 		}
 	}
 	void show()
@@ -219,10 +220,10 @@ class OddballParticle2 // mars
 	{
 		posX = Math.cos(angle * speed) + posX +0.5;
 		posY = Math.sin(angle * speed) + posY +0.5;
-		if (posX >= 599 && posY <= 350)
+		if (posX >= 640 && posY <= 370)
 		{
-			posX = 650;
-			posY = 350; 
+			posX = 640;
+			posY = 360; 
 		}
 
 	}
@@ -265,7 +266,7 @@ class OddballParticle3 // jupiter
 	}
 }
 
-class OddballParticle4 //mercury
+class OddballParticle4 // mercury
 {
 	double posX; // position X
 	double posY; // position Y
@@ -282,18 +283,22 @@ class OddballParticle4 //mercury
 	}
 	void move()
 	{
+
 		posX = Math.cos(angle * speed) + posX +.5;
 		posY = Math.sin(angle * speed) + posY +.5;
 		if (posX >= 560 && posY >= 510)
 		{
 			posX = 570;
 			posY = 510; 
+			
 		}
 	}
 	void show()
 	{
 		fill(102,0,0);
 		ellipse((float)posX, (float)posY, 15, 15);
+
+		
 	}
 }
 
