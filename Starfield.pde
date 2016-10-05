@@ -70,7 +70,7 @@ public void draw()
 	    for(int b = 0; b < 1000; b+=30)
 	    {
 	      fill(255,255,255);
-	      ellipse(a+5, b+5, 5,5);
+	      ellipse(a+5, b+5, 3,3);
 	    }
   	}
 	
