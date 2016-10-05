@@ -488,7 +488,7 @@ class OddballParticle  //Earth
 			posY = 370-500;
 			if (posX == 514-500 && posY == 370-500)
 			{
-				frameRate(01.25);
+				frameRate(02);
 				translate(500, 500);
 				rotate(rot);
 				rot += 1;
