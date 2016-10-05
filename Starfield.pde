@@ -13,7 +13,7 @@ OddballParticle3 [] jupiter;
 OddballParticle4 [] mercury;
 OddballParticle5 [] venus;
 OddballParticle6 [] saturn;
-OddballParticle7 [] uranus;
+// OddballParticle7 [] uranus;
 OddballParticle8 [] neptune;
 OddballParticle9 [] pluto;
 
@@ -41,7 +41,7 @@ public void setup()
 	mercury = new OddballParticle4[1];
 	venus = new OddballParticle5[1];
 	saturn = new OddballParticle6[1];
-	uranus = new OddballParticle7[1];
+	// uranus = new OddballParticle7[1];
 	neptune = new OddballParticle8[1];
 	pluto = new OddballParticle9[1];
 	 for (int nI = 0; nI < asteroids.length; nI++) 
@@ -56,7 +56,7 @@ public void setup()
 	 mercury[0] = new OddballParticle4();
 	 venus[0] = new OddballParticle5();
 	 saturn[0] = new OddballParticle6();
-	 uranus[0] = new OddballParticle7();
+	// uranus[0] = new OddballParticle7();
 	 neptune[0] = new OddballParticle8();
 	 pluto[0] = new OddballParticle9();
 
@@ -70,7 +70,7 @@ public void draw()
 	    for(int b = 0; b < 1000; b+=30)
 	    {
 	      fill(255,255,255);
-	      ellipse(a+5, b+5, 2,2);
+	      ellipse(a+5, b+5, 5,5);
 	    }
   	}
 	
@@ -116,11 +116,11 @@ public void draw()
 		saturn[p].show();
 		saturn[p].move();
 	}
-	for (int q = 0; q < uranus.length; q++) 
+	/*for (int q = 0; q < uranus.length; q++) 
 	{
 		uranus[q].show();
 		uranus[q].move();
-	}
+	}*/
 	for (int r = 0; r < neptune.length; r++) 
 	{
 		neptune[r].show();
@@ -146,7 +146,7 @@ class NormalParticle implements Particle  // asteroid belt
 	{
 		posX = 500;
 		posY = 500;
-		speed = 4.5;
+		speed = 90;
 		angle = Math.PI * 2 * Math.random();
 		radius = Math.sqrt( (500*500) - ( (posX*posX) + (posY*posY) ) );
 	}
@@ -154,8 +154,9 @@ class NormalParticle implements Particle  // asteroid belt
 	{
 		if (dist((float)posX, (float)posY, 500, 500) < 235)
 		{
-			posX = Math.cos(angle * speed) + posX;
-			posY = Math.sin(angle * speed) + posY;
+			
+			posX = Math.cos(angle * speed ) + posX;
+			posY = Math.sin(angle * speed ) + posY;
 		}
 	}
 	public void show()
@@ -191,18 +192,8 @@ class OddballParticle2 // mars
 		posY = Math.sin(angle * speed) + posY +0.5;
 		if (posX >= 640 && posY <= 370)
 		{
-			posX = 640-400;
-			posY = 360-400; 
-			if (posX == 640-400 && posY == 360-400)
-			{
-				translate(500, 500);
-				rotate(rot);
-				rot += 1;
-				fill(153,76,0);
-				ellipse((float)posX, (float)posY, 40, 40);
-				rotate(-rot);
-				translate(0,0);
-			}
+			posX = 640;
+			posY = 360; 
 		}
 
 	}
@@ -345,7 +336,7 @@ class OddballParticle6 // saturn
 	}
 }
 
-class OddballParticle7 // uranus
+/*class OddballParticle7 // uranus
 {
 	double posX; // position X
 	double posY; // position Y
@@ -376,7 +367,7 @@ class OddballParticle7 // uranus
 		ellipse((float)posX, (float)posY, 64, 64);
 	}
 }
-
+*/
 class OddballParticle8 // neptune
 {
 	double posX; // position X
@@ -489,15 +480,15 @@ class OddballParticle  //Earth
 	}
 	void move()
 	{
-		posX = Math.cos(angle * speed) + posX +.1;
-		posY = Math.sin(angle * speed) + posY +.1;
-		if (posX >= 517 || posY <= 370)
+		posX = Math.cos(angle * speed) + posX +0.1;
+		posY = Math.sin(angle * speed) + posY +0.1;
+		if (posY <= 370 || posX >= 517)
 		{
 			posX = 514-500;
 			posY = 370-500;
 			if (posX == 514-500 && posY == 370-500)
 			{
-				frameRate(3);
+				frameRate(2);
 				translate(500, 500);
 				rotate(rot);
 				rot += 1;
@@ -509,7 +500,18 @@ class OddballParticle  //Earth
 				ellipse((float)650-500, (float)959-500, 19, 19); // pluto
 				fill(0,128,255);
 				ellipse((float)430-500, (float)900-500, 66, 66); // neptune
-				
+				fill(255,255,51);
+				ellipse(0, 0, 80, 80); // sun
+				fill(255,178,102);
+				ellipse((float)899-500, (float)430-500, 69, 69); // saturn
+				fill(255,0,0);
+				ellipse((float)299-500, (float)699-500, 60, 60); // jupiter
+				fill(0,204,204);
+				ellipse((float)199-500, (float)199-500, 64, 64); // uranus
+				fill(102,0,0);
+				ellipse((float)570-500, (float)510-500, 15, 15); // mercury
+				fill(255,128,0);
+				ellipse((float)450-500, (float)600-500, 25, 25); // venus
 				rotate(-rot);
 				translate(0,0);
 
